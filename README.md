@@ -19,7 +19,24 @@ cd <repo_name>
 npm install
 ```
 
-Rename `.env.dev` to `.env` (or create a new env file) in the root of the project and add necessary fill up the variables. Then, initialize the database by running the following command:
+Rename `.env.dev` to `.env` (or create a new env file) in the root of the project and add necessary fill up the variables. 
+
+```bash
+# NOTE: This might not be in sync with the latest .env.dev file.
+
+# Prisma
+DATABASE_URL=
+
+# Next Auth
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+
+# NextAuth Facebook Provider
+FACEBOOK_CLIENT_ID=
+FACEBOOK_CLIENT_SECRET=
+```
+
+Then, initialize the database by running the following command:
 
 ```bash
 npx prisma migrate dev --name init
