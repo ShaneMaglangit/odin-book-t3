@@ -7,7 +7,7 @@ This is an app bootstrapped according to the [init.tips](https://init.tips) stac
 - [Next-Auth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
 - [TailwindCSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io) (using @next version? [see v10 docs here](https://alpha.trpc.io))
+- [tRPC](https://trpc.io)
 
 ## Rebuild Locally
 
@@ -19,7 +19,7 @@ cd <repo_name>
 npm install
 ```
 
-Start the development server:
+Rename `.env.dev` to `.env` (or create a new env file) in the root of the project and add necessary fill up the variables. Then, start the development server:
 
 ```bash
 npm run dev
