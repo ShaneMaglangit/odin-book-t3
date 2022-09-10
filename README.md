@@ -19,7 +19,13 @@ cd <repo_name>
 npm install
 ```
 
-Rename `.env.dev` to `.env` (or create a new env file) in the root of the project and add necessary fill up the variables. Then, start the development server:
+Rename `.env.dev` to `.env` (or create a new env file) in the root of the project and add necessary fill up the variables. Then, initialize the database by running the following command:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+Finally, run the development server:
 
 ```bash
 npm run dev
