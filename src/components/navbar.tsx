@@ -1,6 +1,9 @@
 import {useState} from 'react'
 import {NavItem} from '../types/nav-item'
 import {useRouter} from 'next/router'
+import Image from 'next/image'
+import logo from '../../public/logo.svg'
+import profile from '../../public/profile.avif'
 
 const Navbar = ({}) => {
     // State for closing/opening secondary menu
@@ -36,12 +39,7 @@ const Navbar = ({}) => {
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <a href={'/'} className="flex flex-shrink-0 items-center">
-                            <img className="block h-8 w-auto lg:hidden"
-                                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                 alt="Your Company"/>
-                            <img className="hidden h-8 w-auto lg:block"
-                                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                 alt="Your Company"/>
+                            <Image className="block h-8 w-auto" src={logo} alt="Your Company"/>
                         </a>
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex space-x-4">
@@ -62,12 +60,10 @@ const Navbar = ({}) => {
                             <div>
                                 <button type="button"
                                         onClick={() => setDropdownActive(!dropdownActive)}
-                                        className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                        className="h-8 w-8 flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                                         id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span className="sr-only">Open user menu</span>
-                                    <img className="h-8 w-8 rounded-full"
-                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                         alt=""/>
+                                    <Image className="rounded-full" src={profile} alt="" layout="fill"/>
                                 </button>
                                 {dropdownActive && (
                                     <div

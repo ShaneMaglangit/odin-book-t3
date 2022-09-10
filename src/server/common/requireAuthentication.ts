@@ -2,7 +2,7 @@
 import {getServerAuthSession} from './getServerAuthSession'
 import {GetServerSideProps, GetServerSidePropsContext} from 'next'
 
-export function requireAuthentication(getServerSideProps?: GetServerSideProps) {
+export default function requireAuthentication(getServerSideProps?: GetServerSideProps) {
     return async (context: GetServerSidePropsContext) => {
         const session = await getServerAuthSession(context)
         if (!session) {
