@@ -37,7 +37,7 @@ npm run dev
 - [x]  Users should be able to sign in using ~~their real facebook details~~ GitHub OAuth (Feel free to replace it with Facebook).
 - [ ]  Users can send friend requests to other users.
 - [ ]  A user must accept the friend request to become friends.
-- [ ]  Users can create posts. (begin with text only)
+- [x]  Users can create posts. (begin with text only)
 - [ ]  Users can like posts.
 - [ ]  Users can comment on posts.
 - [ ]  Posts should always display with the post content, author, comments and likes.
