@@ -1,6 +1,6 @@
 const PostBox = () => {
     return (
-        <form className={"w-full"}>
+        <form className={'w-full'}>
             <div
                 className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                 <div className="p-4 bg-white rounded-t-lg dark:bg-gray-800">

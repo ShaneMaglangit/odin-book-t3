@@ -30,12 +30,12 @@ const SignIn: NextPage = () => (
 )
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-    const session = await getServerAuthSession(context);
+    const session = await getServerAuthSession(context)
 
     if (session) {
         return {
-            redirect: { destination: "/" },
-        };
+            redirect: {destination: '/'},
+        }
     }
 
     return {
@@ -43,7 +43,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
             providers: await getProviders(),
             csrfToken: await getCsrfToken(),
         },
-    };
+    }
 }
 
 export default SignIn
