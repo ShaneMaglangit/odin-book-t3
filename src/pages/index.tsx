@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import {GetServerSidePropsContext} from 'next'
+import {getServerAuthSession} from '../server/common/get-server-auth-session'
 
 const Home: NextPage = () => {
   return (
@@ -80,3 +82,19 @@ const TechnologyCard = ({
     </section>
   );
 };
+
+// Redirects the user to the login page if they are not authenticated.
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+    const session = await getServerAuthSession(context)
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+    return {
+        props: {session},
+    }
+}
