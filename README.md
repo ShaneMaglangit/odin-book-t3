@@ -55,8 +55,8 @@ npm run dev
 - [ ]  A user must accept the friend request to become friends.
 - [x]  Users can create posts. (begin with text only)
 - [x]  Users can like posts.
-- [ ]  Users can comment on posts.
-- [ ]  Posts should always display with the post content, author, comments and likes.
+- [x]  Users can comment on posts.
+- [x]  Posts should always display with the post content, author, comments and likes.
 - [ ]  Treat the Posts index page like the real Facebook’s “Timeline” feature – show all the recent posts from the current user and users she is friends with.
 - [ ]  Users can create Profile with a photo (you can get this from the real facebook when you sign in using passport)
 - [ ]  The User Show page contains their profile information, profile photo and posts.
