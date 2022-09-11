@@ -1,4 +1,3 @@
-// create post handler to add new post to the database
 import {NextApiRequest, NextApiResponse} from 'next'
 import {prisma} from '../../../server/db/client'
 import {Session} from 'next-auth'
@@ -20,7 +19,8 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
                             select: {
                                 name: true,
                             }
-                        }
+                        },
+                        createdAt: true
                     }
                 }
             },

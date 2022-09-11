@@ -54,7 +54,7 @@ npm run dev
 - [ ]  Users can send friend requests to other users.
 - [ ]  A user must accept the friend request to become friends.
 - [x]  Users can create posts. (begin with text only)
-- [ ]  Users can like posts.
+- [x]  Users can like posts.
 - [ ]  Users can comment on posts.
 - [ ]  Posts should always display with the post content, author, comments and likes.
 - [ ]  Treat the Posts index page like the real Facebook’s “Timeline” feature – show all the recent posts from the current user and users she is friends with.
