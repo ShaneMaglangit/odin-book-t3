@@ -42,16 +42,17 @@ model Session {
 }
 
 model User {
-  id            String       @id @default(cuid())
-  name          String?
-  email         String?      @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  posts         Post[]
-  primaryFriendships Friendship[] @relation(name: "primaryFriendships")
-  secondaryFriendships Friendship[] @relation(name: "secondaryFriendships")
+  id                    String       @id @default(cuid())
+  name                  String?
+  email                 String?      @unique
+  emailVerified         DateTime?
+  image                 String?
+  accounts              Account[]
+  sessions              Session[]
+  posts                 Post[]
+  comments              Comment[]
+  primaryFriendships    Friendship[] @relation(name: "primaryFriendships")
+  secondaryFriendships  Friendship[] @relation(name: "secondaryFriendships")
 }
 
 model VerificationToken {
@@ -63,9 +64,21 @@ model VerificationToken {
 }
 
 model Post {
+  id        String      @id @default(cuid())
+  content   String
+  likes     Int         @default(0)
+  comments  Comment[]
+  authorId  String
+  author    User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt DateTime    @default(now())
+}
+
+model Comment {
   id        String   @id @default(cuid())
   authorId  String
-  message   String
+  postId    String
+  content   String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
