@@ -10,11 +10,12 @@ const Index: NextPage = () => {
         <>
             <Head>
                 <title>Odin Project T3</title>
-                <meta name="description" content="Based on the Odin Project built with typesafe libraries and frameworks"/>
+                <meta name="description"
+                      content="Based on the Odin Project built with typesafe libraries and frameworks"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Navbar/>
-            <main className="bg-gray-50 dark:bg-gray-600">
+            <main className="bg-gray-600 min-h-screen">
                 <div
                     className=" container mx-auto max-w-7xl flex flex-col items-center justify-start min-h-screen py-4 px-8">
                     <PostBox/>

@@ -18,6 +18,8 @@ const Navbar = () => {
     // Primary navigation items
     const navItems: NavItem[] = [
         {name: 'Feed', slug: '/'},
+        {name: 'Users', slug: '/users'},
+        {name: 'Friend Requests', slug: '/friend-requests'},
     ]
 
     return (

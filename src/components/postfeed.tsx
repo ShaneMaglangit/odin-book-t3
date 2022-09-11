@@ -12,11 +12,12 @@ const PostFeed = () => {
             {posts?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map(post =>
                 <div key={post.id} className="w-full mb-4">
                     <div
-                        className="w-full block p-6 bg-white rounded-t-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        className={`${post.comments.length === 0 && 'rounded-b-lg'} w-full block p-6 bg-white rounded-t-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`}>
                         <p className="text-white">{post.content}</p>
                         <div className="flex gap-x-4 items-center mt-4">
                             <div className="flex items-center gap-x-2">
-                                <Image className="rounded-full bg-gray-500" src={post.author.image} alt="" width={24} height={24}/>
+                                <Image className="rounded-full bg-gray-500" src={post.author.image} alt="" width={24}
+                                       height={24}/>
                                 <span className="text-gray-400 text-sm">{post.author.name}</span>
                             </div>
                             <span
@@ -37,15 +38,17 @@ const PostFeed = () => {
                             </button>
                         </form>
                     </div>
-                    <div className="w-full bg-gray-700 p-4 gap-y-2 flex flex-col">
-                        {post.comments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map(comment =>
-                            <div key={comment.id} className="w-full">
-                                <p className="text-gray-300 text-sm">
-                                    <b>{comment.author.name}:</b> {comment.content}
-                                </p>
-                            </div>
-                        )}
-                    </div>
+                    {post.comments.length > 0 && (
+                        <div className="w-full bg-gray-700 p-4 gap-y-2 flex flex-col">
+                            {post.comments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map(comment =>
+                                <div key={comment.id} className="w-full">
+                                    <p className="text-gray-300 text-sm">
+                                        <b>{comment.author.name}:</b> {comment.content}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             )}
         </div>

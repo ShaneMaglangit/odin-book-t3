@@ -38,6 +38,7 @@ GITHUB_CLIENT_SECRET=
 Then, initialize the database by running the following command:
 
 ```bash
+npx prisma generate
 npx prisma migrate dev --name init
 ```
 
@@ -51,8 +52,8 @@ npm run dev
 
 - [x]  Users must sign in to see anything except the sign in page.
 - [x]  Users should be able to sign in using ~~their real facebook details~~ GitHub OAuth (Feel free to replace it with Facebook).
-- [ ]  Users can send friend requests to other users.
-- [ ]  A user must accept the friend request to become friends.
+- [x]  Users can send friend requests to other users.
+- [x]  A user must accept the friend request to become friends.
 - [x]  Users can create posts. (begin with text only)
 - [x]  Users can like posts.
 - [x]  Users can comment on posts.
@@ -60,4 +61,4 @@ npm run dev
 - [ ]  Treat the Posts index page like the real Facebook’s “Timeline” feature – show all the recent posts from the current user and users she is friends with.
 - [x]  Users can create Profile with a photo (you can get this from the real facebook when you sign in using passport)
 - [ ]  The User Show page contains their profile information, profile photo and posts.
-- [ ]  The Users Index page lists all users and buttons for sending friend requests to those who are not already friends or who don’t already have a pending request.
+- [x]  Show all users and button for sending friend requests to those who are not already friends or who don’t already have a pending request.

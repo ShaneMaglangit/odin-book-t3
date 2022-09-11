@@ -3,18 +3,25 @@ import {getCsrfToken, getProviders, signIn} from 'next-auth/react'
 import {getServerAuthSession} from '../server/common/getServerAuthSession'
 import Image from 'next/image'
 import logo from '../../public/logo.svg'
+import Head from 'next/head'
 
 const SignIn: NextPage = () => (
-    <div className="flex h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
-            <div className="flex flex-col items-center">
-                <Image className="mx-auto h-12 w-auto" height={56} width={48} src={logo} alt="Odin Project"/>
-                <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your
-                    account</h2>
-            </div>
-            <button type="button"
-                    onClick={() => signIn('github')}
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+    <>
+        <Head>
+            <title>Odin Project T3</title>
+            <meta name="description" content="Based on the Odin Project built with typesafe libraries and frameworks"/>
+            <link rel="icon" href="/favicon.ico"/>
+        </Head>
+        <div className="flex h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-md space-y-8">
+                <div className="flex flex-col items-center">
+                    <Image className="mx-auto h-12 w-auto" height={56} width={48} src={logo} alt="Odin Project"/>
+                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your
+                        account</h2>
+                </div>
+                <button type="button"
+                        onClick={() => signIn('github')}
+                        className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                             <svg className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
                                  xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +31,11 @@ const SignIn: NextPage = () => (
                                       clipRule="evenodd"/>
                             </svg>
                         </span>
-                Sign in with GitHub
-            </button>
+                    Sign in with GitHub
+                </button>
+            </div>
         </div>
-    </div>
+    </>
 )
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
