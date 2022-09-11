@@ -50,7 +50,7 @@ npm run dev
 
 ## Task List
 
-- [x]  Users must sign in to see anything except the sign in page.
+- [x]  Users must sign in to see anything except the sign-in page.
 - [x]  Users should be able to sign in using ~~their real facebook details~~ GitHub OAuth (Feel free to replace it with Facebook).
 - [x]  Users can send friend requests to other users.
 - [x]  A user must accept the friend request to become friends.
@@ -60,5 +60,5 @@ npm run dev
 - [x]  Posts should always display with the post content, author, comments and likes.
 - [x]  Treat the Posts index page like the real Facebook’s “Timeline” feature – show all the recent posts from the current user and users she is friends with.
 - [x]  Users can create Profile with a photo (you can get this from the real facebook when you sign in using passport)
-- [ ]  The User Show page contains their profile information, profile photo and posts.
+- [x]  The User Show page contains their profile information, profile photo and posts.
 - [x]  Show all users and button for sending friend requests to those who are not already friends or who don’t already have a pending request.

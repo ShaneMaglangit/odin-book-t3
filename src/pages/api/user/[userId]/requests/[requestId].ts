@@ -1,9 +1,8 @@
 import requireAuthorization from '../../../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
-import {Session} from 'next-auth'
 import {prisma} from '../../../../../server/db/client'
 
-export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, session: Session) => {
+export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method !== 'PUT') res.status(405).end()
     const requestId = req.query.requestId as string
     const isAccept = req.query.accept as string === 'true'

@@ -1,21 +1,19 @@
-import {NextPage} from 'next'
 import Head from 'next/head'
 import Navbar from '../components/navbar'
 import requireAuthentication from '../server/common/requireAuthentication'
 import {useQuery} from 'react-query'
 import Image from 'next/image'
-import {useSession} from 'next-auth/react'
 import {FriendRequest} from '../types/friend-request'
+import {ProtectedPageProps} from '../types/protected-page-props'
 
-const FriendRequests: NextPage = () => {
-    const {data: session} = useSession()
+const FriendRequests = ({user}: ProtectedPageProps) => {
     const {
         data: requests,
         refetch
-    } = useQuery<FriendRequest[]>('requests', () => fetch(`/api/user/${session!.user!.id}/requests`).then(res => res.json()))
+    } = useQuery<FriendRequest[]>('requests', () => fetch(`/api/user/${user.id}/requests`).then(res => res.json()))
 
     const respondToRequest = (requestId: string, accept: boolean) => {
-        fetch(`/api/user/${session!.user!.id}/requests/${requestId}?accept=${accept}`, {method: 'PUT'}).then(() => refetch())
+        fetch(`/api/user/${user.id}/requests/${requestId}?accept=${accept}`, {method: 'PUT'}).then(() => refetch())
     }
 
     return (
@@ -30,8 +28,8 @@ const FriendRequests: NextPage = () => {
                 <div
                     className="container mx-auto max-w-7xl flex flex-col items-center justify-start min-h-screen py-4 px-8">
                     {requests?.map(request => (
-                        <div
-                            className="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        <div key={request.id}
+                             className="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                             <div className="flex flex-col items-center py-10 px-10">
                                 <div
                                     className="relative mb-3 h-24 w-24 overflow-hidden rounded-full shadow-lg bg-white">

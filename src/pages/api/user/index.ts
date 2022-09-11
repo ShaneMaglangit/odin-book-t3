@@ -1,13 +1,13 @@
 import requireAuthorization from '../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
 import {prisma} from '../../../server/db/client'
-import {Session} from 'next-auth'
+import {SessionUser} from '../../../types/session-user'
 
-export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, session: Session) => {
+export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
     if (req.method !== 'GET') return res.status(405).end()
     const users = await prisma.user.findMany({
         where: {
-            id: {not: session!.user!.id},
+            id: {not: sessionUser.id},
         },
         select: {
             _count: {
@@ -15,14 +15,14 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
                     primaryFriendships: {
                         where: {
                             friendId: {
-                                equals: session!.user!.id,
+                                equals: sessionUser.id,
                             }
                         },
                     },
                     secondaryFriendships: {
                         where: {
                             userId: {
-                                equals: session!.user!.id,
+                                equals: sessionUser.id,
                             }
                         },
                     },

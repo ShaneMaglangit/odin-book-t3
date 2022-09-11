@@ -14,6 +14,6 @@ export default function requireAuthentication(getServerSideProps?: GetServerSide
             }
         }
         if (getServerSideProps) return await getServerSideProps(context)
-        return {props: {session}}
+        return {props: {user: session.user}}
     }
 }

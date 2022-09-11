@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import type {AppType} from 'next/dist/shared/lib/utils'
 import {SessionProvider} from 'next-auth/react'
-import {QueryClientProvider, QueryClient} from 'react-query'
+import {QueryClient, QueryClientProvider} from 'react-query'
 
 const queryClient = new QueryClient()
 

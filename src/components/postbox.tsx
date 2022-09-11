@@ -1,6 +1,6 @@
 const PostBox = () => {
     return (
-        <form className={'w-full'} method='POST' action={'/api/post'}>
+        <form className={'w-full'} method="POST" action={'/api/post'}>
             <div
                 className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                 <div className="p-4 bg-white rounded-t-lg dark:bg-gray-800">

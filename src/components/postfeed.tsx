@@ -2,8 +2,11 @@ import Post from '../types/post'
 import {useQuery} from 'react-query'
 import Image from 'next/image'
 
-const PostFeed = () => {
-    const {data: posts, refetch} = useQuery<Post[]>('posts', () => fetch('/api/post').then(res => res.json()))
+const PostFeed = ({userId}: { userId?: string }) => {
+    const {data: posts, refetch} = useQuery<Post[]>('posts', () => (
+        // Session is guaranteed to be defined here (gSSP-protected)
+        fetch(userId !== undefined ? `/api/user/${userId}/posts` : '/api/post')
+    ).then(res => res.json()))
 
     const likePost = (postId: string) => fetch(`/api/post/${postId}/like`, {method: 'PUT'}).then(() => refetch())
 

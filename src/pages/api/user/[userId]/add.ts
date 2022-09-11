@@ -1,16 +1,16 @@
 import requireAuthorization from '../../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
 import {prisma} from '../../../../server/db/client'
-import {Session} from 'next-auth'
+import {SessionUser} from '../../../../types/session-user'
 
-export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, session: Session) => {
+export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
     if (req.method !== 'POST') return res.status(405).end()
     const userId = req.query.userId as string
     const existingRequest = await prisma.friendship.findFirst({
         where: {
             OR: [
-                {userId: session!.user!.id, friendId: userId},
-                {userId: userId, friendId: session!.user!.id},
+                {userId: sessionUser.id, friendId: userId},
+                {userId: userId, friendId: sessionUser.id},
             ]
         }
     })
@@ -18,7 +18,7 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
     await prisma.friendship.create({
         data: {
             friendId: userId,
-            userId: session!.user!.id,
+            userId: sessionUser.id,
         }
     })
     res.status(200).redirect('/users')

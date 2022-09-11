@@ -1,9 +1,9 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 import {prisma} from '../../../server/db/client'
-import {Session} from 'next-auth'
 import requireAuthorization from '../../../server/common/requireAuthorization'
+import {SessionUser} from '../../../types/session-user'
 
-export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, session: Session) => {
+export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
     // Get list of posts
     if (req.method === 'GET') {
         // Get list of user friend's IDs
@@ -11,8 +11,8 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
             .findMany({
                 where: {
                     OR: [
-                        {userId: session!.user!.id, pending: false},
-                        {friendId: session!.user!.id, pending: false},
+                        {userId: sessionUser.id, pending: false},
+                        {friendId: sessionUser.id, pending: false},
                     ]
                 },
                 select: {
@@ -21,7 +21,7 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
                 }
             }).then<string[]>(friendships =>
                 friendships.map(friendship =>
-                    friendship.userId === session!.user!.id ? friendship.friendId : friendship.userId
+                    friendship.userId === sessionUser.id ? friendship.friendId : friendship.userId
                 )
             )
 
@@ -29,7 +29,7 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
         const posts = await prisma.post.findMany({
             where: {
                 OR: [
-                    {authorId: {equals: session!.user!.id}},
+                    {authorId: {equals: sessionUser.id}},
                     {authorId: {in: friendsIds}},
                 ]
             },
@@ -56,7 +56,7 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
         const {content} = req.body as { content: string }
         await prisma.post.create({
             data: {
-                authorId: session!.user!.id,
+                authorId: sessionUser.id,
                 content: content,
             },
         })

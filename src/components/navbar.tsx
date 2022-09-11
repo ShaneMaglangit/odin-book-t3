@@ -4,6 +4,7 @@ import {useRouter} from 'next/router'
 import Image from 'next/image'
 import logo from '../../public/logo.svg'
 import {useSession} from 'next-auth/react'
+import Link from 'next/link'
 
 const Navbar = () => {
     // State for closing/opening secondary menu
@@ -77,13 +78,13 @@ const Navbar = () => {
                                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                         tabIndex={-1}>
 
-                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                        <a href={`/users/${session?.user?.id}`}
+                                           className="block px-4 py-2 text-sm text-gray-700" role="menuitem"
                                            tabIndex={-1} id="user-menu-item-0">Your Profile</a>
-                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                           tabIndex={-1} id="user-menu-item-1">Settings</a>
-                                        <a href="/api/auth/signout" className="block px-4 py-2 text-sm text-gray-700"
-                                           role="menuitem"
-                                           tabIndex={-1} id="user-menu-item-2">Sign out</a>
+                                        <Link href="/api/auth/signout" role="menuitem">
+                                            <span className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
+                                                  tabIndex={-1} id="user-menu-item-2">Sign out</span>
+                                        </Link>
                                     </div>
                                 )}
                             </div>
@@ -93,17 +94,14 @@ const Navbar = () => {
             </div>
             <div className="sm:hidden" id="mobile-menu">
                 <div className="space-y-1 px-2 pt-2 pb-3">
-                    <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-                       aria-current="page">Dashboard</a>
-
-                    <a href="#"
-                       className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
-                    <a href="#"
-                       className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-                    <a href="#"
-                       className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+                    {navItems.map(item => {
+                        const isActivePage = item.slug === router.pathname
+                        const className = isActivePage ?
+                            'bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium' :
+                            'text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'
+                        return <a key={item.slug} href={item.slug} className={className}
+                                  aria-current={isActivePage && 'page'}>{item.name}</a>
+                    })}
                 </div>
             </div>
         </nav>

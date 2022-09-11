@@ -1,11 +1,11 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import {Session} from 'next-auth'
 import {getServerAuthSession} from './getServerAuthSession'
+import {SessionUser} from '../../types/session-user'
 
-export default function requireAuthorization(handler: (req: NextApiRequest, res: NextApiResponse, session: Session) => void) {
+export default function requireAuthorization(handler: (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => void) {
     return async (req: NextApiRequest, res: NextApiResponse) => {
         const session = await getServerAuthSession({req, res})
-        if (session !== null) return handler(req, res, session)
+        if (session !== null) return handler(req, res, session.user as SessionUser)
         res.status(401)
         res.end()
     }

@@ -1,9 +1,9 @@
 import {NextPage} from 'next'
 import Head from 'next/head'
-import Navbar from '../components/navbar'
-import requireAuthentication from '../server/common/requireAuthentication'
+import Navbar from '../../components/navbar'
+import requireAuthentication from '../../server/common/requireAuthentication'
 import {useQuery} from 'react-query'
-import User from '../types/user'
+import User from '../../types/user'
 import Image from 'next/image'
 
 
@@ -19,7 +19,7 @@ const Users: NextPage = () => {
             <Head>
                 <title>Users | Odin Project T3</title>
                 <meta name="description" content="Directory of users of the Odin Book Porject"/>
-                <link rel="icon" href="/favicon.ico"/>
+                <link rel="icon" href="/public/favicon.ico"/>
             </Head>
             <Navbar/>
             <main className="bg-gray-600 min-h-screen">
@@ -28,7 +28,9 @@ const Users: NextPage = () => {
                     {users?.map(user => {
                         const isFriend = user._count.primaryFriendships + user._count.secondaryFriendships === 1
                         return (
-                            <div
+                            <a
+                                key={user.id}
+                                href={`/users/${user.id}`}
                                 className="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                                 <div className="flex flex-col items-center py-10 px-10">
                                     <div
@@ -54,7 +56,7 @@ const Users: NextPage = () => {
                                         )}
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         )
                     })}
                 </div>
