@@ -3,14 +3,17 @@ import {NavItem} from '../types/nav-item'
 import {useRouter} from 'next/router'
 import Image from 'next/image'
 import logo from '../../public/logo.svg'
-import profile from '../../public/profile.avif'
+import {useSession} from 'next-auth/react'
 
-const Navbar = ({}) => {
+const Navbar = () => {
     // State for closing/opening secondary menu
     const [dropdownActive, setDropdownActive] = useState(false)
 
     // Router to be used for matching the current URL with the navigation items
     const router = useRouter()
+
+    // Get current session
+    const {data: session} = useSession()
 
     // Primary navigation items
     const navItems: NavItem[] = [
@@ -63,7 +66,8 @@ const Navbar = ({}) => {
                                         className="h-8 w-8 flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                                         id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span className="sr-only">Open user menu</span>
-                                    <Image className="rounded-full" src={profile} alt="" layout="fill"/>
+                                    <Image className="rounded-full bg-gray-500" src={session?.user?.image ?? ''} alt=""
+                                           layout="fill"/>
                                 </button>
                                 {dropdownActive && (
                                     <div

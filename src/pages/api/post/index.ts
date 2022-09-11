@@ -10,6 +10,7 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
                 author: {
                     select: {
                         name: true,
+                        image: true,
                     }
                 },
                 comments: {
@@ -18,6 +19,7 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
                         author: {
                             select: {
                                 name: true,
+                                image: true
                             }
                         },
                         createdAt: true

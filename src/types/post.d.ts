@@ -5,6 +5,7 @@ export default interface Post {
     createdAt: string
     author: {
         name: string
+        image: string
     }
     comments: Comment[]
     likes: number
@@ -18,5 +19,6 @@ interface Comment {
     createdAt: string
     author: {
         name: string
+        image: string
     }
 }
