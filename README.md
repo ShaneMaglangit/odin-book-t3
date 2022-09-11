@@ -58,7 +58,7 @@ npm run dev
 - [x]  Users can like posts.
 - [x]  Users can comment on posts.
 - [x]  Posts should always display with the post content, author, comments and likes.
-- [ ]  Treat the Posts index page like the real Facebook’s “Timeline” feature – show all the recent posts from the current user and users she is friends with.
+- [x]  Treat the Posts index page like the real Facebook’s “Timeline” feature – show all the recent posts from the current user and users she is friends with.
 - [x]  Users can create Profile with a photo (you can get this from the real facebook when you sign in using passport)
 - [ ]  The User Show page contains their profile information, profile photo and posts.
 - [x]  Show all users and button for sending friend requests to those who are not already friends or who don’t already have a pending request.

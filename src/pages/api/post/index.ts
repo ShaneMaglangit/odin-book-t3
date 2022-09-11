@@ -4,34 +4,33 @@ import {Session} from 'next-auth'
 import requireAuthorization from '../../../server/common/requireAuthorization'
 
 export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, session: Session) => {
+    // Get list of posts
     if (req.method === 'GET') {
+        // Get list of user friend's IDs
+        const friendsIds = await prisma.friendship
+            .findMany({
+                where: {
+                    OR: [
+                        {userId: session!.user!.id, pending: false},
+                        {friendId: session!.user!.id, pending: false},
+                    ]
+                },
+                select: {
+                    userId: true,
+                    friendId: true,
+                }
+            }).then<string[]>(friendships =>
+                friendships.map(friendship =>
+                    friendship.userId === session!.user!.id ? friendship.friendId : friendship.userId
+                )
+            )
+
+        // Get posts belonging to the user or their friends
         const posts = await prisma.post.findMany({
-            // Select posts that either is posted by the current user or their friends.
             where: {
                 OR: [
                     {authorId: {equals: session!.user!.id}},
-                    {
-                        author: {
-                            OR: [{
-                                primaryFriendships: {
-                                    some: {
-                                        OR: [
-                                            {friendId: {equals: session!.user!.id}},
-                                            {userId: {equals: session!.user!.id}},
-                                        ]
-                                    }
-                                },
-                                secondaryFriendships: {
-                                    some: {
-                                        OR: [
-                                            {friendId: {equals: session!.user!.id}},
-                                            {userId: {equals: session!.user!.id}},
-                                        ]
-                                    }
-                                }
-                            }]
-                        }
-                    }
+                    {authorId: {in: friendsIds}},
                 ]
             },
             include: {
@@ -52,6 +51,7 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
         res.status(200).json(posts)
         return
     }
+    // Create a new post
     if (req.method === 'POST') {
         const {content} = req.body as { content: string }
         await prisma.post.create({
@@ -63,5 +63,6 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
         res.status(200).redirect('/')
         return
     }
+    // Invalid method
     res.status(405).end()
 })
