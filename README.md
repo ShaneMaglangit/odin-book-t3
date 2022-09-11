@@ -23,7 +23,6 @@ Rename `.env.dev` to `.env` (or create a new env file) in the root of the projec
 
 ```bash
 # NOTE: This might not be in sync with the latest .env.dev file.
-
 # Prisma
 DATABASE_URL=
 
@@ -32,8 +31,8 @@ NEXTAUTH_SECRET=
 NEXTAUTH_URL=
 
 # NextAuth Facebook Provider
-FACEBOOK_CLIENT_ID=
-FACEBOOK_CLIENT_SECRET=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
 ```
 
 Then, initialize the database by running the following command:
