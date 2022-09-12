@@ -30,7 +30,7 @@ DATABASE_URL=
 NEXTAUTH_SECRET=
 NEXTAUTH_URL=
 
-# NextAuth Facebook Provider
+# NextAuth Github Provider
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 ```
