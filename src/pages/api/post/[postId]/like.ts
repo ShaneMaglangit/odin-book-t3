@@ -1,6 +1,5 @@
 import requireAuthorization from '../../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
-import {prisma} from '../../../../server/db/client'
 import {likePost} from '../../../../server/db/post'
 
 export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse) => {

@@ -3,8 +3,10 @@ import {NextApiRequest, NextApiResponse} from 'next'
 import {SessionUser} from '../../../types/session-user'
 import {getUsersExcludeCurrentById} from '../../../server/db/user'
 
-export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
+const userHandler = requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
     if (req.method !== 'GET') return res.status(405).end()
     const users = await getUsersExcludeCurrentById(sessionUser.id)
     res.status(200).json(users)
 })
+
+export default userHandler

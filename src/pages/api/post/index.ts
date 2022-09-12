@@ -1,5 +1,4 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import {prisma} from '../../../server/db/client'
 import requireAuthorization from '../../../server/common/requireAuthorization'
 import {SessionUser} from '../../../types/session-user'
 import {createPost, getFriendIds, getPostsByUserAndFriends} from '../../../server/db/post'

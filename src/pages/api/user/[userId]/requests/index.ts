@@ -1,6 +1,5 @@
 import requireAuthorization from '../../../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
-import {prisma} from '../../../../../server/db/client'
 import {getPendingFriendship} from '../../../../../server/db/friendship'
 
 export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse) => {

@@ -1,6 +1,5 @@
 import requireAuthorization from '../../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
-import {prisma} from '../../../../server/db/client'
 import {getUserById} from '../../../../server/db/user'
 
 export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse) => {
