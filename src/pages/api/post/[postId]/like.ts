@@ -6,14 +6,8 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
     if (req.method !== 'PUT') return res.status(405).end()
     const postId = req.query.postId as string
     await prisma.post.update({
-        where: {
-            id: postId,
-        },
-        data: {
-            likes: {
-                increment: 1,
-            }
-        }
+        where: {id: postId},
+        data: {likes: {increment: 1}}
     })
     res.status(200).redirect('/')
 })

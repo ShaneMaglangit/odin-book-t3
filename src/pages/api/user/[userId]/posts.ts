@@ -20,9 +20,11 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
                         select: {name: true, image: true}
                     },
                     createdAt: true
-                }
+                },
+                orderBy: {createdAt: 'desc'}
             }
         },
+        orderBy: {createdAt: 'desc'}
     })
     res.status(200).json(posts)
 })

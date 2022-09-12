@@ -5,27 +5,18 @@ import {SessionUser} from '../../../types/session-user'
 
 export default requireAuthorization(async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
     if (req.method !== 'GET') return res.status(405).end()
-    const users = await prisma.user.findMany({
-        where: {
-            id: {not: sessionUser.id},
-        },
+    const users = await getUsers(sessionUser)
+    res.status(200).json(users)
+})
+
+async function getUsers(sessionUser: SessionUser) {
+    return prisma.user.findMany({
+        where: {id: {not: sessionUser.id}},
         select: {
             _count: {
                 select: {
-                    primaryFriendships: {
-                        where: {
-                            friendId: {
-                                equals: sessionUser.id,
-                            }
-                        },
-                    },
-                    secondaryFriendships: {
-                        where: {
-                            userId: {
-                                equals: sessionUser.id,
-                            }
-                        },
-                    },
+                    primaryFriendships: {where: {friendId: sessionUser.id}},
+                    secondaryFriendships: {where: {userId: sessionUser.id}},
                 }
             },
             id: true,
@@ -33,5 +24,4 @@ export default requireAuthorization(async (req: NextApiRequest, res: NextApiResp
             image: true,
         }
     })
-    res.status(200).json(users)
-})
+}

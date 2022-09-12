@@ -1,5 +1,5 @@
 import {GetServerSidePropsContext, NextPage} from 'next'
-import {getCsrfToken, getProviders, signIn} from 'next-auth/react'
+import {signIn} from 'next-auth/react'
 import {getServerAuthSession} from '../server/common/getServerAuthSession'
 import Image from 'next/image'
 import logo from '../../public/logo.svg'
@@ -40,19 +40,7 @@ const SignIn: NextPage = () => (
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     const session = await getServerAuthSession(context)
-
-    if (session) {
-        return {
-            redirect: {destination: '/'},
-        }
-    }
-
-    return {
-        props: {
-            providers: await getProviders(),
-            csrfToken: await getCsrfToken(),
-        },
-    }
+    return session ? {redirect: {destination: '/'}} : {props: {}}
 }
 
 export default SignIn

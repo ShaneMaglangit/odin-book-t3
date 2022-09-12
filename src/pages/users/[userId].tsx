@@ -2,10 +2,10 @@ import Head from 'next/head'
 import Navbar from '../../components/navbar'
 import Image from 'next/image'
 import requireAuthentication from '../../server/common/requireAuthentication'
-import PostFeed from '../../components/postfeed'
 import {useRouter} from 'next/router'
 import {useQuery} from 'react-query'
 import User from '../../types/user'
+import PostFeed from '../../components/post-feed'
 
 const UserProfile = () => {
     const userId = useRouter().query.userId as string
@@ -36,7 +36,7 @@ const UserProfile = () => {
                                 className="text-sm text-gray-500 dark:text-gray-400">{user?.email ?? 'Loading'}</span>
                         </div>
                     </div>
-                    <h3 className="w-full mb-4 font-bold text-gray-200 text-lg">My posts</h3>
+                    <h3 className="w-full mb-4 font-bold text-gray-200 text-lg">{user?.name ?? 'User'}&apos;s Posts</h3>
                     <PostFeed userId={userId}/>
                 </div>
             </main>
