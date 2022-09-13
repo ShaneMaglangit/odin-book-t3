@@ -6,7 +6,7 @@ import User from '../types/user'
 export function createSessionUser(): SessionUser {
     const id = uuidv4()
     return {
-        id: `mockid-${id}`,
+        id: id,
         name: 'Test User',
         image: 'https://example.com/image.png',
         email: `testuser-${id}@email.com`,
@@ -36,8 +36,4 @@ export async function createMockUser(): Promise<SessionUser> {
         },
     })
     return user
-}
-
-export async function deleteMockUsers() {
-    await prisma.user.deleteMany({where: {id: {startsWith: 'mockid-'}}})
 }

@@ -1,8 +1,8 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import requireAuthorization from '../../../../server/common/requireAuthorization'
 import {SessionUser} from '../../../../types/session-user'
 import {createComment} from '../../../../server/db/comment'
 import {getPostById} from '../../../../server/db/post'
+import requireAuthorization from '../../../../server/common/requireAuthorization'
 
 export const commentHandlerFunc = async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
     if (req.method !== 'POST') return res.status(405).end()
@@ -15,4 +15,4 @@ export const commentHandlerFunc = async (req: NextApiRequest, res: NextApiRespon
     res.redirect('/')
 }
 
-export default commentHandlerFunc
+export default requireAuthorization(commentHandlerFunc)

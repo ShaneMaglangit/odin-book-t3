@@ -1,12 +1,16 @@
 import {createMocks} from 'node-mocks-http'
 import {usersHandlerFunc} from '../../pages/api/users/'
-import {createMockUser, deleteMockUsers, sessionUserToUser} from '../helpers'
+import {createMockUser, sessionUserToUser} from '../helpers'
 import {userHandlerFunc} from '../../pages/api/users/[userId]'
 import {createPost} from '../../server/db/post'
 import {userPostHandlerFunc} from '../../pages/api/users/[userId]/posts'
 import {userAddHandlerFunc} from '../../pages/api/users/[userId]/add'
 import {createFriendship} from '../../server/db/friendship'
 import Post from '../../types/post'
+
+beforeAll(() => {
+    process.env.DATABASE_URL = process.env.DATABASE_URL_TEST
+})
 
 describe('GET /api/user', () => {
     it('should return list of other users with 200 response code', async () => {
@@ -121,8 +125,4 @@ describe('POST /api/users/:id/add', () => {
         expect(res._getStatusCode()).toBe(404)
         expect(res._getJSONData()).toEqual({message: 'User not found'})
     })
-})
-
-afterAll(async () => {
-    await deleteMockUsers()
 })

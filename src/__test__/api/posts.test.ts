@@ -1,4 +1,4 @@
-import {createMockUser, deleteMockUsers} from '../helpers'
+import {createMockUser} from '../helpers'
 import {createPost, getPostById} from '../../server/db/post'
 import {postHandlerFunc} from '../../pages/api/post'
 import {createMocks} from 'node-mocks-http'
@@ -149,8 +149,4 @@ describe('POST /api/post/[postId]/comment', () => {
         // Check response
         expect(res._getStatusCode()).toBe(400)
     })
-})
-
-afterAll(async () => {
-    await deleteMockUsers()
 })

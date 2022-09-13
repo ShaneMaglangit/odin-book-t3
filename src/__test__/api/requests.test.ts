@@ -1,10 +1,9 @@
-import {createMockUser, deleteMockUsers} from '../helpers'
+import {createMockUser} from '../helpers'
 import {acceptFriendshipById, createFriendship, getFriendshipById} from '../../server/db/friendship'
 import {createMocks} from 'node-mocks-http'
 import {requestsHandlerFunc} from '../../pages/api/requests'
 import {requestIdHandlerFunc} from '../../pages/api/requests/[requestId]'
 import {Friendship} from '../../types/friendship'
-
 
 describe('GET /api/requests', () => {
     it('should return list of friend requests if user exists', async () => {
@@ -141,8 +140,4 @@ describe('POST /api/requests/:id', () => {
         // Check response
         expect(res._getStatusCode()).toBe(403)
     })
-})
-
-afterAll(async () => {
-    await deleteMockUsers()
 })

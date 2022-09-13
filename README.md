@@ -19,10 +19,12 @@ cd <repo_name>
 npm install
 ```
 
-Rename `.env.dev` to `.env` (or create a new env file) in the root of the project and add necessary fill up the variables. 
+Create `.env` and `.env.test` based on the schema in `.env.schema`. Fill up the fields where necessary.
 
 ```bash
 # NOTE: This might not be in sync with the latest .env.dev file.
+# NOTE: Set a different DATABASE_URL for .env and .env.test. The latter will be used for testing.
+
 # Prisma
 DATABASE_URL=
 
@@ -38,8 +40,7 @@ GITHUB_CLIENT_SECRET=
 Then, initialize the database by running the following command:
 
 ```bash
-npx prisma generate
-npx prisma migrate dev --name init
+npm run migrate
 ```
 
 Finally, run the development server:
