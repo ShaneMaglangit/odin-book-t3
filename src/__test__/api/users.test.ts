@@ -83,6 +83,7 @@ describe('POST /api/users/:id/add', () => {
         await userAddHandlerFunc(req, res, mockUser)
         // Check response
         expect(res._getStatusCode()).toBe(302)
+        expect(res._getRedirectUrl()).toBe('/users')
     })
     // should return 400 if userId === friendId
     it('should return 400 if userId === friendId', async () => {
