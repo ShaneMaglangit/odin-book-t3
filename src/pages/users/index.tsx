@@ -8,10 +8,10 @@ import Image from 'next/image'
 
 
 const Users: NextPage = () => {
-    const {data: users, refetch} = useQuery<User[]>('users', () => fetch('/api/user').then(res => res.json()))
+    const {data: users, refetch} = useQuery<User[]>('users', () => fetch('/api/users').then(res => res.json()))
 
     const sendRequest = (userId: string) => {
-        fetch(`/api/user/${userId}/add`, {method: 'POST'}).then(() => refetch())
+        fetch(`/api/users/${userId}/add`, {method: 'POST'}).then(() => refetch())
     }
 
     return (
@@ -28,16 +28,17 @@ const Users: NextPage = () => {
                     {users?.map(user => {
                         const isFriend = user._count.primaryFriendships + user._count.secondaryFriendships === 1
                         return (
-                            <a
+                            <div
                                 key={user.id}
-                                href={`/users/${user.id}`}
                                 className="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                                 <div className="flex flex-col items-center py-10 px-10">
                                     <div
                                         className="relative mb-3 h-24 w-24 overflow-hidden rounded-full shadow-lg bg-white">
                                         <Image layout="fill" src={user.image} alt={user.name}/>
                                     </div>
-                                    <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.name}</h5>
+                                    <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                                        <a href={`/users/${user.id}`}>{user.name}</a>
+                                    </h5>
                                     <span
                                         className="text-sm text-gray-500 dark:text-gray-400">Placeholder for aesthetic</span>
                                     <div className="flex mt-4 space-x-3 md:mt-6">
@@ -56,7 +57,7 @@ const Users: NextPage = () => {
                                         )}
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         )
                     })}
                 </div>

@@ -6,7 +6,7 @@ import PostCard from './post-card'
 const PostFeed = ({userId}: { userId?: string }) => {
     // Fetch posts from the database
     const {data: posts, refetch} = useQuery<Post[]>('posts', () => (
-        fetch(userId !== undefined ? `/api/user/${userId}/posts` : '/api/post')
+        fetch(userId !== undefined ? `/api/users/${userId}/posts` : '/api/post')
     ).then(res => res.json()))
 
     // Callback function for liking a post

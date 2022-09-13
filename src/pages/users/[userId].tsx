@@ -9,7 +9,7 @@ import PostFeed from '../../components/post-feed'
 
 const UserProfile = () => {
     const userId = useRouter().query.userId as string
-    const {data: user} = useQuery<User>(`user-${userId}`, () => fetch(`/api/user/${userId}`).then(res => res.json()))
+    const {data: user} = useQuery<User>(`user-${userId}`, () => fetch(`/api/users/${userId}`).then(res => res.json()))
 
     return (
         <>

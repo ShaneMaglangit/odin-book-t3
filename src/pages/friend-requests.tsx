@@ -4,16 +4,15 @@ import requireAuthentication from '../server/common/requireAuthentication'
 import {useQuery} from 'react-query'
 import Image from 'next/image'
 import {FriendRequest} from '../types/friend-request'
-import {ProtectedPageProps} from '../types/protected-page-props'
 
-const FriendRequests = ({user}: ProtectedPageProps) => {
+const FriendRequests = () => {
     const {
         data: requests,
         refetch
-    } = useQuery<FriendRequest[]>('requests', () => fetch(`/api/user/${user.id}/requests`).then(res => res.json()))
+    } = useQuery<FriendRequest[]>('requests', () => fetch(`/api/requests`).then(res => res.json()))
 
     const respondToRequest = (requestId: string, accept: boolean) => {
-        fetch(`/api/user/${user.id}/requests/${requestId}?accept=${accept}`, {method: 'PUT'}).then(() => refetch())
+        fetch(`/api/requests/${requestId}?accept=${accept}`, {method: 'PUT'}).then(() => refetch())
     }
 
     return (
