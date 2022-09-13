@@ -1,5 +1,6 @@
 import {prisma} from './client'
 import {SessionUser} from '../../types/session-user'
+import Post from '../../types/post'
 
 export async function getPostsByUserId(userId: string) {
     return prisma.post.findMany({
@@ -64,6 +65,26 @@ export async function getPostsByUserAndFriends(sessionUser: SessionUser, friendI
                 }
             }
         },
+    })
+}
+
+export async function getPostById(postId: string) {
+    return prisma.post.findUnique({
+        where: {id: postId},
+        include: {
+            author: {
+                select: {name: true, image: true}
+            },
+            comments: {
+                select: {
+                    content: true,
+                    author: {
+                        select: {name: true, image: true}
+                    },
+                    createdAt: true
+                }
+            }
+        }
     })
 }
 
