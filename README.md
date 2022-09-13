@@ -22,7 +22,6 @@ npm install
 Create `.env` and `.env.test` based on the schema in `.env.schema`. Fill up the fields where necessary.
 
 ```bash
-# NOTE: This might not be in sync with the latest .env.dev file.
 # NOTE: Set a different DATABASE_URL for .env and .env.test. The latter will be used for testing.
 
 # Prisma
