@@ -1,4 +1,5 @@
 import {prisma} from './client'
+import {Friendship} from '../../types/friendship'
 
 export async function getFriendshipByUserIdAndFriendId(userId: string, friendId: string) {
     return prisma.friendship.findFirst({
@@ -43,5 +44,9 @@ export async function acceptFriendshipById(friendshipId: string) {
 }
 
 export async function rejectFriendshipById(friendshipId: string) {
-    return prisma.friendship.delete({ where: {id: friendshipId} })
+    return prisma.friendship.delete({where: {id: friendshipId}})
+}
+
+export async function getFriendshipById(friendshipId: string): Promise<Friendship | null> {
+    return prisma.friendship.findUnique({where: {id: friendshipId}})
 }
