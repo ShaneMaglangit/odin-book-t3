@@ -11,12 +11,14 @@ This is an app bootstrapped according to the [init.tips](https://init.tips) stac
 
 ## Rebuild Locally
 
-Clone the repo and run `npm install` to install dependencies.
+
+Clone the repo, run `npm install` to install dependencies, and install [dotenv-cli](https://www.npmjs.com/package/dotenv-cli) globally for testing.
 
 ```bash
 git clone <url_of_this_repo>
 cd <repo_name>
 npm install
+npm i -g npm i dotenv-cli
 ```
 
 Create `.env` and `.env.test` based on the schema in `.env.schema`. Fill up the fields where necessary.
