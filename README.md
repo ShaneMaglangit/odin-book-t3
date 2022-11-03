@@ -1,5 +1,7 @@
 # Odin Book T3
 
+> This was purely for exploratory purpose. Certains features may not be optimized and the webapp is unresponsive for smaller screens (nothing breakpoints can't solve).
+
 Attempt towards the [Odin Book Project](https://www.theodinproject.com/lessons/nodejs-odin-book)
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
