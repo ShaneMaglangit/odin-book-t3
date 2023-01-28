@@ -29,11 +29,11 @@ Create `.env` and `.env.test` based on the schema in `.env.schema`. Fill up the 
 # NOTE: Set a different DATABASE_URL for .env and .env.test. The latter will be used for testing.
 
 # Prisma
-DATABASE_URL=
+DATABASE_URL=file:./db.sqlite
 
 # Next Auth
 NEXTAUTH_SECRET=
-NEXTAUTH_URL=
+NEXTAUTH_URL=http://localhost:3000
 
 # NextAuth Github Provider
 GITHUB_CLIENT_ID=
