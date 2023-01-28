@@ -6,13 +6,13 @@ import {QueryClient, QueryClientProvider} from 'react-query'
 const queryClient = new QueryClient()
 
 const MyApp: AppType = ({Component, pageProps: {session, ...pageProps}}) => {
-    return (
-        <SessionProvider session={session}>
-            <QueryClientProvider client={queryClient}>
-                <Component {...pageProps} />
-            </QueryClientProvider>
-        </SessionProvider>
-    )
+	return (
+		<SessionProvider session={session}>
+			<QueryClientProvider client={queryClient}>
+				<Component {...pageProps} />
+			</QueryClientProvider>
+		</SessionProvider>
+	)
 }
 
 export default MyApp

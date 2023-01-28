@@ -1,6 +1,6 @@
 # Odin Book T3
 
-> This was purely for exploratory purpose. Certains features may not be optimized and the webapp is unresponsive for smaller screens (nothing breakpoints can't solve).
+> This was purely for exploratory purpose. Certain features may not be optimized and the webapp is unresponsive for smaller screens (nothing breakpoints can't solve).
 
 Attempt towards the [Odin Book Project](https://www.theodinproject.com/lessons/nodejs-odin-book)
 
