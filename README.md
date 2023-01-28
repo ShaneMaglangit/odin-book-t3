@@ -30,6 +30,7 @@ Create `.env` and `.env.test` based on the schema in `.env.schema`. Fill up the 
 
 # Prisma
 DATABASE_URL=file:./db.sqlite
+DATABASE_URL_TEST=file:./db.test.sqlite
 
 # Next Auth
 NEXTAUTH_SECRET=
