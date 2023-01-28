@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Navbar from '../components/common/navbar'
-import requireAuthentication from '../server/common/requireAuthentication'
+import Navbar from '../../components/common/Navbar'
+import requireAuthentication from '../../server/common/requireAuthentication'
 import {useQuery} from 'react-query'
 import Image from 'next/image'
-import {FriendRequest} from '../types/friendRequest'
+import {FriendRequest} from '../../types/friendRequest'
 
-const FriendRequest = () => {
+const Requests = () => {
 	const {
 		data: requests,
 		refetch
@@ -59,4 +59,4 @@ const FriendRequest = () => {
 
 export const getServerSideProps = requireAuthentication()
 
-export default FriendRequest
+export default Requests

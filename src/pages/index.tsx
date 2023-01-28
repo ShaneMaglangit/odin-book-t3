@@ -1,10 +1,10 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import requireAuthentication from '../server/common/requireAuthentication'
-import Navbar from '../components/common/navbar'
-import MainContent from '../components/main-content'
-import PostBox from '../components/post-box'
-import PostFeed from '../components/post-feed'
+import Navbar from '../components/common/Navbar'
+import Main from '../components/common/Main'
+import PostBox from '../components/post/PostBox'
+import PostFeed from '../components/feed/Feed'
 
 const Index: NextPage = () => {
 	return (
@@ -16,10 +16,10 @@ const Index: NextPage = () => {
 				<link rel="icon" href="/favicon.ico"/>
 			</Head>
 			<Navbar/>
-			<MainContent>
+			<Main>
 				<PostBox/>
 				<PostFeed/>
-			</MainContent>
+			</Main>
 		</>
 	)
 }

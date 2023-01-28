@@ -1,6 +1,6 @@
 import requireAuthorization from '../../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
-import {SessionUser} from '../../../../types/session-user'
+import {SessionUser} from '../../../../types/sessionUser'
 import {createFriendship, getFriendshipByUserIdAndFriendId} from '../../../../server/db/friendship'
 import {getUserById} from '../../../../server/db/user'
 

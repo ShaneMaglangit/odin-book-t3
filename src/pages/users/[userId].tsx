@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Navbar from '../../components/common/navbar'
+import Navbar from '../../components/common/Navbar'
 import Image from 'next/image'
 import requireAuthentication from '../../server/common/requireAuthentication'
 import {useRouter} from 'next/router'
 import {useQuery} from 'react-query'
 import User from '../../types/user'
-import PostFeed from '../../components/post-feed'
+import PostFeed from '../../components/feed/Feed'
 
 const UserProfile = () => {
 	const userId = useRouter().query.userId as string

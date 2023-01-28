@@ -20,7 +20,7 @@ const Navbar = () => {
 	const navItems: NavItem[] = [
 		{name: 'Feed', slug: '/'},
 		{name: 'Users', slug: '/users'},
-		{name: 'Friend Requests', slug: '/friend-requests'},
+		{name: 'Friend Requests', slug: '/users/requests'},
 	]
 
 	return (

@@ -1,6 +1,6 @@
 import {NextPage} from 'next'
 import Head from 'next/head'
-import Navbar from '../../components/common/navbar'
+import Navbar from '../../components/common/Navbar'
 import requireAuthentication from '../../server/common/requireAuthentication'
 import {useQuery} from 'react-query'
 import User from '../../types/user'

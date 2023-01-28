@@ -1,7 +1,7 @@
 import requireAuthorization from '../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
 import {getPendingFriendship} from '../../../server/db/friendship'
-import {SessionUser} from '../../../types/session-user'
+import {SessionUser} from '../../../types/sessionUser'
 
 export const requestsHandlerFunc = async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
 	if (req.method !== 'GET') res.status(405).end()

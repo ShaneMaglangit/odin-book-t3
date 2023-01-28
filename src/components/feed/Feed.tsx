@@ -1,9 +1,9 @@
 import Post from '../../types/post'
 import {useQuery} from 'react-query'
 import React from 'react'
-import PostCard from './postCard'
+import PostCard from '../post/PostCard'
 
-const PostFeed = ({userId}: { userId?: string }) => {
+const Feed = ({userId}: { userId?: string }) => {
 	// Fetch posts from the database
 	const {data: posts, refetch} = useQuery<Post[]>('posts', () => (
 		fetch(userId !== undefined ? `/api/users/${userId}/posts` : '/api/post')
@@ -19,4 +19,4 @@ const PostFeed = ({userId}: { userId?: string }) => {
 	)
 }
 
-export default PostFeed
+export default Feed

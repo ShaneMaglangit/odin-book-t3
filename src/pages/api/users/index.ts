@@ -1,6 +1,6 @@
 import requireAuthorization from '../../../server/common/requireAuthorization'
 import {NextApiRequest, NextApiResponse} from 'next'
-import {SessionUser} from '../../../types/session-user'
+import {SessionUser} from '../../../types/sessionUser'
 import {getUsersExcludeCurrentById} from '../../../server/db/user'
 
 export const usersHandlerFunc = async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {

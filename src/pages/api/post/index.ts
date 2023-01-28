@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 import requireAuthorization from '../../../server/common/requireAuthorization'
-import {SessionUser} from '../../../types/session-user'
+import {SessionUser} from '../../../types/sessionUser'
 import {createPost, getFriendIds, getPostsByUserAndFriends} from '../../../server/db/post'
 
 export const postHandlerFunc = async (req: NextApiRequest, res: NextApiResponse, sessionUser: SessionUser) => {
