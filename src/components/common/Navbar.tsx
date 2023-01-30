@@ -69,8 +69,12 @@ const Navbar = () => {
 												className="h-8 w-8 flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
 												id="user-menu-button" aria-expanded="false" aria-haspopup="true">
 									<span className="sr-only">Open user menu</span>
-									<Image className="rounded-full bg-gray-500" src={session?.user?.image ?? ''} alt=""
-												 layout="fill"/>
+									{session?.user?.image &&
+										<Image className="rounded-full bg-gray-500"
+                           src={session.user.image}
+                           alt="profile photo"
+                           layout="fill"/>
+									}
 								</button>
 								{dropdownActive && (
 									<div
@@ -82,8 +86,8 @@ const Navbar = () => {
 											 className="block px-4 py-2 text-sm text-gray-700" role="menuitem"
 											 tabIndex={-1} id="user-menu-item-0">Your Profile</a>
 										<Link href="/api/auth/signout" role="menuitem">
-                                            <span className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
-																									tabIndex={-1} id="user-menu-item-2">Sign out</span>
+											<span className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
+														tabIndex={-1} id="user-menu-item-2">Sign out</span>
 										</Link>
 									</div>
 								)}
